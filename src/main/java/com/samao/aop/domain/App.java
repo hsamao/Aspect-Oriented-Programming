@@ -13,6 +13,10 @@ public class App {
         Camera camera = (Camera) context.getBean("camera");
 
         camera.snap();
+        camera.snap(10);
+        camera.snap("Canon");
+        camera.nightMode();
+
         context.close();
 
 
