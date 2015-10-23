@@ -1,5 +1,6 @@
 package com.samao.aop.domain;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -11,36 +12,44 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class Logger {
 
-    @Pointcut("execution(void com.samao.aop.domain.Camera.snap(..))")
+    @Pointcut("execution(void com.samao.aop.domain.Camera.snap())")
     //==>> (..) is a wildcard --> accept any types of arguments
     public void cameraSnap() {
 
     }
 
-    @Pointcut("execution(* com.samao.aop.domain.Camera.*(..))")
-    //==>> first * ==> will be applied on any method return types
-    //==>> second * ==> will be applied on any method in that package
-    public void cameraSnapShot() {
-
-    }
-
-    @Pointcut("execution(* *.*(..))")
-    //==>> first * ==> will be applied on any method return types
-    //==>> second * ==> will be applied on any method in that package
-    public void anyCamera() {
-
-    }
 
     @Before("cameraSnap()")
-    public void aboutToTakePhoto() {
-        System.out.println("about to take a photo...");
+    public void beforeAdvise() {
+        System.out.println("Before advise ...");
     }
 
-    @After("cameraSnapShot()")
-     public void photoHasTaken() {
-        System.out.println("The photo has been taken ...\n");
+    @After("cameraSnap()")
+    public void afterAdvise() {
+        System.out.println("After advise ...\n");
     }
 
+    @AfterReturning("cameraSnap()")
+    public void afterReturningAdvise() {
+        System.out.println("After returning advise ...");
+    }
 
+    @AfterThrowing("cameraSnap()")
+    public void afterThrowingAdvise() {
+        System.out.println("After throwing advise ...\n");
+    }
+
+    @Around("cameraSnap()")
+    public void aroundAdvise(ProceedingJoinPoint proceedingJoinPoint) {
+        System.out.println("Around advise (before) ...\n");
+
+        try {
+            proceedingJoinPoint.proceed();
+        } catch (Throwable throwable) {
+            System.out.println("In around advise " + throwable.getMessage());
+        }
+
+        System.out.println("Around advise (after) ...");
+    }
 
 }
