@@ -1,5 +1,6 @@
 package com.samao.aop.domain;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -19,15 +20,19 @@ public class Logger {
 
     }*/
 
-    @Pointcut("args(Double)")
+    @Pointcut("target(com.samao.aop.domain.Camera)")
 
     public void cameraSnapArg() {
 
     }
 
     @Before("cameraSnapArg()")
-    public void beforeArg() {
+    public void beforeArg(JoinPoint joinPoint) {
         System.out.println("********* Before Arg *********");
+
+       for (Object joint : joinPoint.getArgs()) {
+           System.out.println("arg: " + joint);
+       }
     }
 
 
