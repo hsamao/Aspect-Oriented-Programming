@@ -20,19 +20,17 @@ public class Logger {
 
     }*/
 
-    @Pointcut("target(com.samao.aop.domain.Camera)")
+    @Pointcut("args(exposure, aperture)")
 
-    public void cameraSnapArg() {
+    public void cameraSnapArg(int exposure, double aperture) {
 
     }
 
-    @Before("cameraSnapArg()")
-    public void beforeArg(JoinPoint joinPoint) {
+    @Before("cameraSnapArg(exposure, aperture)")
+    public void beforeArg(JoinPoint joinPoint, int exposure, double aperture) {
         System.out.println("********* Before Arg *********");
 
-       for (Object joint : joinPoint.getArgs()) {
-           System.out.println("arg: " + joint);
-       }
+        System.out.printf("exposure %d, aperture %.2f\n", exposure, aperture);
     }
 
 
