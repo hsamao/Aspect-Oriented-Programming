@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class Camera{
+public class Camera implements PhotoSnapper{
 
     public void snap (){
         System.out.println("SNAP!");
-
 
     }
 

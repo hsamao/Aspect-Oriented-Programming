@@ -1,5 +1,6 @@
 package com.samao.aop.domain;
 
+import com.samao.aop.domain.subdomain.SubDomain;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -11,8 +12,11 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/com/samao/aop/aop-config.xml");
 
         Camera camera = (Camera) context.getBean("camera");
+        SubDomain subDomain = (SubDomain) context.getBean("subdomain");
 
         camera.snap();
+
+        subDomain.subDomain();
 
         context.close();
 
