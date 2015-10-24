@@ -14,6 +14,20 @@ public class Camera implements PhotoSnapper{
 
     }
 
+    public void snap (int shots){
+        System.out.println("SNAP! " + shots);
+
+    }
+
+    public void snap (double shots){
+        System.out.println("SNAP! " + shots);
+
+    }
+
+    public void snap (int shot, double shots){
+        System.out.println("SNAP! " + shot + " " + shots);
+
+    }
 
 
 

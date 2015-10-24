@@ -15,6 +15,10 @@ public class App {
         SubDomain subDomain = (SubDomain) context.getBean("subdomain");
 
         camera.snap();
+        camera.snap(10);
+        camera.snap(5L);
+        camera.snap(3, 8L);
+
 
         subDomain.subDomain();
 

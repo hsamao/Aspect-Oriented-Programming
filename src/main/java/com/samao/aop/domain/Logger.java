@@ -13,36 +13,32 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class Logger {
 
-    @Pointcut("within(com.samao.aop.domain..*)")
-    //==> a wildcard for scanning classes in the current package and sub packages
+    /*@Pointcut("bean(camera)")
+
     public void cameraSnap() {
 
-    }
+    }*/
 
-    @Pointcut("target(com.samao.aop.domain.Camera)")
-    public void targetSnap() {
+    @Pointcut("args(Double)")
 
-    }
-
-    @Pointcut("this(com.samao.aop.domain.Camera)")
-    public void thisSnap() {
+    public void cameraSnapArg() {
 
     }
+
+    @Before("cameraSnapArg()")
+    public void beforeArg() {
+        System.out.println("********* Before Arg *********");
+    }
+
+
+/*
 
     @Before("cameraSnap()")
     public void beforeAdvice() {
         System.out.println("********* Before Advice *********");
     }
+*/
 
-    @Before("targetSnap()")
-    public void beforeTarget() {
-        System.out.println("********* Before Target *********");
-    }
-
-    @Before("thisSnap()")
-    public void beforeThis() {
-        System.out.println("********* Before This *********");
-    }
 
 
 }
