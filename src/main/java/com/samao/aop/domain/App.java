@@ -12,14 +12,9 @@ public class App {
 
         Camera camera = (Camera) context.getBean("camera");
 
-        try {
-            camera.snap();
-        } catch (Exception e) {
-            System.out.println("Caught exception " + e.getMessage());;
-        }
+        camera.snap();
 
         context.close();
-
 
     }
 

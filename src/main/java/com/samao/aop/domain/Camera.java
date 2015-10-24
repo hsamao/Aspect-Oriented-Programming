@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class Camera {
+public class Camera{
 
-    public void snap ()throws Exception{
+    public void snap (){
         System.out.println("SNAP!");
 
-       // throw new Exception("bye bye");
+
     }
 
 
